@@ -3,12 +3,97 @@
  */
 package edu.isu.cs.cs2263;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
+import com.google.common.reflect.TypeToken;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+//import static edu.isu.cs.cs2263.IOmanager.readData;
+
+
+public class App extends Application {
+    @Override
+    public void start(Stage stage) {
+
+        //launch(args);
+
+        // set title for the stage
+        stage.setTitle("Courses Taken");
+
+        // create a button
+        Button button = new Button("Pawan");
+        Button button1=new Button("Karl");
+
+        // create a tile pane
+        TilePane pp = new TilePane();
+
+        // create a label
+        Label label = new Label("Computer Science 1181");
+        Label label1=new Label("Biology 3302");
+
+        // create a popup
+        Popup popup = new Popup();
+
+
+        // set background
+        label.setStyle(" -fx-background-color: Yellow;");
+
+        // add the label
+        popup.getContent().add(label);
+        popup.getContent().add(label1);
+
+        // set size of label
+        label.setMinWidth(80);
+        label.setMinHeight(50);
+
+        // action event
+        EventHandler<ActionEvent> event =
+                new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent e) {
+                        if (!popup.isShowing())
+                            popup.show(stage);
+                        else
+                            popup.hide();
+                    }
+                };
+
+        // when button is pressed
+        button.setOnAction(event);
+
+        // add button
+        pp.getChildren().add(button);
+        pp.getChildren().add(button1);
+
+        // create a scene
+        Scene scene = new Scene(pp, 200, 200);
+
+        // set the scene
+        stage.setScene(scene);
+
+        stage.show();
+
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    public static void main(String args[]) {
+        launch(args);
+
     }
 }
+
+
+//Reference:http://tutorials.jenkov.com/javafx/your-first-javafx-application.html
+
+
+
